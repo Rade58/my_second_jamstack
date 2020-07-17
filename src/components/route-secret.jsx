@@ -1,7 +1,7 @@
 import React from "react";
 
-const RouteBase = () => {
+const RouteSecret = () => {
   return <h1>Super secret stuff</h1>;
 };
 
-export default RouteBase;
+export default RouteSecret;

@@ -36,7 +36,7 @@ const Dashboard = ({ location }) => {
         {/* <BaseRoute path="/dashboard/base" />
         <SecretRoute path="/dashboard/secret" /> */}
         <PrivateRoute component={BaseRoute} path="/dashboard/base" />
-        <PrivateRoute component={SecretRoute} path="/dasboard/secret" />
+        <PrivateRoute component={SecretRoute} path="/dashboard/secret" />
         {/*  */}
         <LoginRoute path="/dashboard/login" showWidget={showWidget} />
       </Router>
