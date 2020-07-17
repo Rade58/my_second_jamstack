@@ -1,22 +1,37 @@
 import React from "react";
 import { Link } from "gatsby";
+import { useIdentityContext } from "react-netlify-identity";
 
-// I JA SAM ZABORAVI DA MOGU NA LINKOVIMA DA KORISTIM activeClassName PROP
-// TAKO MOGU ZADATI CSS KLASU I STILIZOVATI ONAJ LINK NAS CIJEM SAM TRENUTNOM ROUTE-U
+// EVO IZ PROPS-A IZDVAJAM    showWidget
+const Profile = ({ showWidget }) => {
+  const identity = useIdentityContext();
 
-const Profile = () => {
+  console.log(identity);
+
+  const isLoggedIn = identity && identity.isLoggedIn;
+
+  const name = identity?.user?.user_metadata?.full_name;
+
+  //  KACIM POMENUTU FUNKCIJU NA BUTTON, KOJI CU DEFINISATI
+
   return (
-    <div className="dashboard-header">
-      <nav>
-        <Link activeClassName="active" to="/dashboard/secret">
-          Secret Stuff
-        </Link>
-        <Link activeClassName="active" to="/dashboard/base">
-          Se Your Base
-        </Link>
-      </nav>
-      <span>{"todo: show login status"}</span>
-    </div>
+    isLoggedIn && (
+      <div className="dashboard-header">
+        <nav>
+          <Link activeClassName="active" to="/dashboard/secret">
+            Secret Stuff
+          </Link>
+          <Link activeClassName="active" to="/dashboard/base">
+            Se Your Base
+          </Link>
+        </nav>
+        <span>
+          Logged in as {name}
+          {/* EVO OVDE */}
+          <button onClick={showWidget}>Log out</button>
+        </span>
+      </div>
+    )
   );
 };
 
